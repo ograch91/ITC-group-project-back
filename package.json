@@ -1,0 +1,27 @@
+{
+  "name": "itc-group-project-back",
+  "version": "1.0.0",
+  "description": "ITC FINAL PROJECT BACK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ograch91/ITC-group-project-back.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ograch91/ITC-group-project-back/issues"
+  },
+  "homepage": "https://github.com/ograch91/ITC-group-project-back#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.2",
+    "express-jwt": "^7.7.7",
+    "jsonwebtoken": "^8.5.1",
+    "uuid": "^9.0.0",
+    "yup": "^0.32.11"
+  }
+}
