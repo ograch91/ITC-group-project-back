@@ -2,7 +2,7 @@
   "name": "itc-group-project-back",
   "version": "1.0.0",
   "description": "ITC FINAL PROJECT BACK",
-  "main": "index.js",
+  "main": "express.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
