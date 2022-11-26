@@ -10,3 +10,5 @@ module.exports.hashPassword = async plainText => {
 module.exports.verifyPassword = async (plainText, hash) => {
   return await bcrypt.compare(plainText, hash);
 };
+
+// for test 
