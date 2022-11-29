@@ -1,0 +1,18 @@
+[
+  {
+    "name": "oren",
+    "phone": "0544000000",
+    "email": "admin@gmail.com",
+    "password": "12121212",
+    "id": "b4ff715b-ac9f-4cc1-8ef8-34331abc1668",
+    "photo": "https://images.dog.ceo/breeds/chihuahua/n02085620_735.jpg"
+  },
+  {
+    "name": "tom",
+    "phone": "0544000000",
+    "email": "tom@tom.com",
+    "password": "12121212",
+    "id": "0563b357-f5a2-49b9-b64b-33e1c2d13703",
+    "photo": "https://images.dog.ceo/breeds/chihuahua/n02085620_735.jpg"
+  }
+]
