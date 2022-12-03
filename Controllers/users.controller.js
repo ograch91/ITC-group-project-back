@@ -32,7 +32,7 @@ module.exports.login = async (req, res, next) => {
   const newToken = generateToken({ email });
 
   // res.ok({ token: newToken, user: userForFront(user) });  // todo: add again if required
-  delete user.password; 
+  delete user.password;
   res.ok({ token: newToken, user: user });
 };
 
@@ -47,4 +47,26 @@ module.exports.signUp = async (req, res, next) => {
   users.add({ email, hash, name, phone, passDebug: password });
   // passDebug is for debugging only, remove in production
   res.ok({ message: 'User created successfully' });
+};
+
+module.exports.updateUser = async (req, res, next) => {
+  const { email, password, name, phone } = req.body;
+  const user = getUserByEmail(email);
+  if (!user) {
+    return next(ErrNotFound('User not found'));
+  }
+
+  const hash = await hashPassword(password);
+  const update = users.updateItem(user.id, {
+    email,
+    hash,
+    name,
+    phone,
+    passDebug: password,
+  });
+
+  res.ok({
+    message: 'User updated successfully',
+    user: userForFront(update),
+  });
 };
