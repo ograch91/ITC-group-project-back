@@ -9,8 +9,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: '*',
-    // origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000',
   })
 );
 
@@ -33,6 +32,8 @@ app.use((req, res, next) => {
     next(internalErr());
   }
 });
+
+app.use('/users', require('./routes/users.route'));
 
 
 
