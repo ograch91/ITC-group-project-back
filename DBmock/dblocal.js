@@ -28,7 +28,7 @@
  
    getById = id => {
      const list = this.get();
-     const item = list.find(i => i.id === parseInt(id));
+     const item = list.find(i => i.id === id);
  
      return item;
      //return the item with that id
@@ -51,18 +51,19 @@
  
    deleteById = id => {
      const list = this.get();
-     const filteredList = list.filter(i => i.id !== parseInt(id));
+     const filteredList = list.filter(i => i.id !== id);
      this.save(filteredList);
    };
  
    updateItem = (id, json) => {
      const list = this.get();
-     const index = list.findIndex(i => i.id === parseInt(id));
+     const index = list.findIndex(i => i.id === id);
      if (index === -1) {
        return;
      }
-     list[index] = { ...json, id: parseInt(id) };
+     list[index] = { ...json, id};
      this.save(list);
+     return list[index];
    };
  }
  
