@@ -3,5 +3,11 @@
     "id": "cfa29b17-4079-4fbb-a050-428bb2af5c12",
     "created": "date now",
     "participants": ["oren", "tom"]
+  },
+
+  {
+    "id": "dfa29b17-4079-4fbb-a050-428bb2af5c12",
+    "created": "date now",
+    "participants": ["Mario", "Luigi"]
   }
 ]
