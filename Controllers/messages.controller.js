@@ -16,5 +16,10 @@ module.exports.getMessagesById = async (req, res, next) => {
   // res.ok(users.getById(id));
   res.ok(messages.getById(req.params.id))
 }
-
+module.exports.addNewMessage = async (req, res, next) => {
+  const { id, sender, chatid, datesent, content} = req.body
+  // const allMessages = await messages.get();
+  messages.add({id, sender, chatid, datesent, content});
+  res.ok('New messages created')
+}
 
