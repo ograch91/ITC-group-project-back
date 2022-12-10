@@ -1,4 +1,5 @@
-const DbCollection = require('../DBmock/dblocal');
+// const DbCollection = require('../DBmock/dblocal');
+const DbCollection = require('../DB/mongodb');
 const chats = new DbCollection('chats');
 
 

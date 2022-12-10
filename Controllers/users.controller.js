@@ -1,6 +1,6 @@
 // actual endpoint logic/implementation is defined here
 
-const DbCollection = require('../DBmock/dblocal');
+const DbCollection = require('../DB/mongodb');
 const { hashPassword, verifyPassword } = require('../lib/hashpassword');
 const { generateToken } = require('../lib/JWT');
 const { ErrNotFound, errExists, ErrRes } = require('../lib/responseHandler');
@@ -31,9 +31,7 @@ module.exports.login = async (req, res, next) => {
 
   const newToken = generateToken({ email });
 
-  // res.ok({ token: newToken, user: userForFront(user) });  // todo: add again if required
-  delete user.password;
-  res.ok({ token: newToken, user: user });
+  res.ok({ token: newToken, user: userForFront(user) });  
 };
 
 module.exports.signUp = async (req, res, next) => {

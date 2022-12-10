@@ -1,7 +1,7 @@
 // // actual endpoint logic/implementation is defined here
 
 // const { ErrNotFound, errExists, ErrRes } = require('../lib/responseHandler');
-const DbCollection = require('../DBmock/dblocal');
+const DbCollection = require('../DB/mongodb');
 const messages = new DbCollection('messages');
 
 
