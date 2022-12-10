@@ -68,3 +68,10 @@ module.exports.updateUser = async (req, res, next) => {
     user: userForFront(update),
   });
 };
+
+module.exports.setUserImage = async (req, res, next) => {
+  const { photo } = req.body;
+  const id = req.user.id
+  const updated = await users.updateItem(id, {photo});
+  res.ok(userForFront(updated));
+};

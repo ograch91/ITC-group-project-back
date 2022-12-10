@@ -22,7 +22,7 @@ let userDetailSchema = yup.object().shape({
 
 let userImageUpdate = yup.object().shape({
   // id: yup.string().required(),
-  image: yup.string().url().required(),
+  photo: yup.string().url().required(),
 });
 
 
