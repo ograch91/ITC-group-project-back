@@ -56,7 +56,8 @@ class DbCollection {
     if (!found) {
       return;
     }
-    const updated = await this.collection.updateOne({ id }, { $set: json });
+    await this.collection.updateOne({ id }, { $set: json });
+    const updated = await this.collection.findOne({ id });
     return updated;
   };
 }
