@@ -8,3 +8,16 @@
  * delete conversation
  * delete message?
  */
+// const DbCollection = require('../DBmock/dblocal');
+// const messages = new DbCollection('messages');
+
+const express = require('express');
+const route = express.Router();
+const { allMessages, getMessagesById, addNewMessage } = require('../Controllers/messages.controller');
+
+
+route.get('/getall', allMessages);
+route.get('/:id', getMessagesById)
+route.post('/', addNewMessage)
+
+module.exports = route;
