@@ -1,5 +1,5 @@
 // const DbCollection = require('../db/mongodb');
-const DbCollection = require('../DBmock/dblocal');
+const DbCollection = require('../DB/mongodb');
 const { hashPassword } = require('../lib/hashpassword');
 const users = new DbCollection('users');
 
@@ -7,10 +7,10 @@ const users = new DbCollection('users');
 //   const arr = await users.getByFilterEQ('email', email);
 //   return arr[0];
 // };
-module.exports.getUserByEmail = (email) => {
+module.exports.getUserByEmail = async (email) => {
   
-  const list = users.get();
-
+  const list = await users.get();
+ 
   const user = list.find(i => i.email === email);
   return user;
 }
