@@ -32,7 +32,6 @@ class DbCollection {
 
   getById = async id => {
     const found = await this.collection.findOne({ id });
-    console.log(typeof id);
     return found;
   };
 

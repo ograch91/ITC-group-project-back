@@ -31,7 +31,7 @@ module.exports.login = async (req, res, next) => {
 
   const newToken = generateToken({ email });
 
-  res.ok({ token: newToken, user: userForFront(user) });  
+  res.ok({ token: newToken, user: userForFront(user) });
 };
 
 module.exports.signUp = async (req, res, next) => {
@@ -71,7 +71,17 @@ module.exports.updateUser = async (req, res, next) => {
 
 module.exports.setUserImage = async (req, res, next) => {
   const { photo } = req.body;
-  const id = req.user.id
-  const updated = await users.updateItem(id, {photo});
+  const id = req.user.id;
+  const updated = await users.updateItem(id, { photo });
   res.ok(userForFront(updated));
+};
+
+module.exports.getUserById = async (req, res, next) => {
+  const { id } = req.params;
+  const user = await users.getById(id);
+  if (!user) {
+    return next(ErrNotFound('User not found'));
+  }
+  const resp = userForFront(user);
+  res.ok(resp);
 };
