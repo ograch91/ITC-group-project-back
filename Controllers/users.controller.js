@@ -93,3 +93,8 @@ module.exports.getUserById = async (req, res, next) => {
   const resp = userForFront(user);
   res.ok(resp);
 };
+
+module.exports.ping = (req, res, next) => {
+  console.log('ping');
+  res.ok({ message: 'token ok' });
+};
