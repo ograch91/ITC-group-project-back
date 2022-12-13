@@ -7,17 +7,14 @@ const users = new DbCollection('users');
 //   const arr = await users.getByFilterEQ('email', email);
 //   return arr[0];
 // };
-module.exports.getUserByEmail = async (email) => {
-  
+module.exports.getUserByEmail = async email => {
   const list = await users.get();
- 
   const user = list.find(i => i.email === email);
   return user;
-}
+};
 
 // remove security data from user object
 module.exports.userForFront = user => {
-
   if (user.password) delete user.password;
   if (user.passDebug) delete user.passDebug;
   if (user.hash) delete user.hash;
