@@ -76,6 +76,14 @@ module.exports.setUserImage = async (req, res, next) => {
   res.ok(userForFront(updated));
 };
 
+module.exports.getAllUsers = async (req, res, next) => {
+  const usersList = await users.get();
+  if (!usersList) {
+    return next(ErrNotFound('User not found'));
+  }
+  res.ok(usersList);
+};
+
 module.exports.getUserById = async (req, res, next) => {
   const { id } = req.params;
   const user = await users.getById(id);
