@@ -9,9 +9,10 @@ module.exports.allChats = async (req, res, next) => {
 }
 
 module.exports.getChatsById = async (req, res, next) => {
-    console.log('params', req.params);
-    const allChats = await chats.get();
-    res.ok(chats.getById(req.params.id))
+    // console.log('params', req.params);
+    // const allChats = await chats.get();
+    const currentChat =await chats.getById(req.params.id);
+    res.ok(currentChat);
 }
 
 
