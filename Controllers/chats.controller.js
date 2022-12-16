@@ -5,19 +5,20 @@ const chats = new DbCollection('chats');
 
 module.exports.allChats = async (req, res, next) => {
     const allChats = await chats.get();
-    res.ok(allChats)
+    res.ok(allChats);
 }
 
 module.exports.getChatsById = async (req, res, next) => {
-    console.log('params', req.params);
-    const allChats = await chats.get();
-    res.ok(chats.getById(req.params.id))
+    // console.log('params', req.params);
+    // const allChats = await chats.get();
+    const currentChat= await chats.getById(req.params.id);
+    res.ok(currentChat);
 }
 
 
 module.exports.addNewChat = async (req, res, next) => {
-    const { id, created, participants } = req.body
+    const { created, participants } = req.body
     // const allMessages = await messages.get();
-    chats.add({ id, created, participants });
+    chats.add({created, participants });
     res.ok('New chats created')
 }

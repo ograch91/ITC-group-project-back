@@ -11,15 +11,14 @@ module.exports.allMessages = async (req, res, next) => {
 };
 
 module.exports.getMessagesById = async (req, res, next) => {
-  console.log('params', req.params);
-  const allMessages = await messages.get();
   // res.ok(users.getById(id));
-  res.ok(messages.getById(req.params.id))
+  const selectedMessage = await messages.getById(req.params.id);
+  res.ok(selectedMessage);
 }
 module.exports.addNewMessage = async (req, res, next) => {
-  const { id, sender, chatid, datesent, content} = req.body
+  const { sender, chatid, datesent, content} = req.body
   // const allMessages = await messages.get();
-  messages.add({id, sender, chatid, datesent, content});
+  messages.add({ sender, chatid, datesent, content});
   res.ok('New messages created')
 }
 
