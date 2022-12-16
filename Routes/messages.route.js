@@ -13,11 +13,12 @@
 
 const express = require('express');
 const route = express.Router();
-const { allMessages, getMessagesById, addNewMessage } = require('../Controllers/messages.controller');
+const { allMessages, getMessagesById, addNewMessage ,getMessagesByChatId } = require('../Controllers/messages.controller');
 
 
 route.get('/getall', allMessages);
-route.get('/:id', getMessagesById)
-route.post('/', addNewMessage)
+route.get('/:id', getMessagesById);
+route.get('/getChat/:id', getMessagesByChatId);
+route.post('/', addNewMessage);
 
 module.exports = route;
