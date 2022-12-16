@@ -11,11 +11,23 @@ module.exports.allMessages = async (req, res, next) => {
 };
 
 module.exports.getMessagesById = async (req, res, next) => {
-  console.log('params', req.params);
-  const allMessages = await messages.get();
+  // console.log('params', req.params);
+  // const allMessages = await messages.get();
   // res.ok(users.getById(id));
-  res.ok(messages.getById(req.params.id))
+  const selectMessages = await messages.getById(req.params.id);
+  res.ok(selectMessages);
 }
+
+module.exports.getMessagesByChatId = async (req, res, next) => {
+  const {id} = req.params;
+  const selectMessages = await messages.getByFilterEQ("chatid",id);
+  selectMessages.sort((a,b) => a.id - b.id);
+  // console.log(selectMessages);
+  res.ok(selectMessages);
+}
+
+
+
 module.exports.addNewMessage = async (req, res, next) => {
   const { id, sender, chatid, datesent, content} = req.body
   // const allMessages = await messages.get();
