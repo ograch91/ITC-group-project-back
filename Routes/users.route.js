@@ -22,8 +22,7 @@ route.post('/signup', validateSchema(userDetailSchema), signUp);
 route.put('/update', authanticate, validateSchema(userDetailSchema), updateUser);
 route.get('/ping',authanticate, ping);
 route.put('/setphoto', authanticate, validateSchema(userImageUpdate), setUserImage);
-// Authentication bybassed for /getAllUsers for dev porpuses untill fix to work with authenticate
-route.get('/getall',/*authanticate, */ getAllUsers);  
+route.get('/getall',authanticate, getAllUsers);  
 route.get('/:id', authanticate, getUserById)  // MUST BE LAST ROUTE
 
 module.exports = route;
