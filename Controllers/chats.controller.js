@@ -24,3 +24,11 @@ module.exports.addNewChat = async (req, res, next) => {
     chats.add({ id, created, participants });
     res.ok('New chats created')
 }
+
+module.exports.allChatsForUser = async (req, res, next) => {
+    const { id } = req.user;
+    const allChats = await chats.get(); // todo: avoid get all, use mongo query functionality
+    const chatsForUser = allChats.filter(chat => chat.participants.includes(id));
+    // const chatsForUser = chats.findChatsByUserId(id);
+    res.ok(chatsForUser);    
+}
