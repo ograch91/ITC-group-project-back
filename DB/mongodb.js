@@ -22,6 +22,10 @@ class DbCollection {
    return await this.collection.find({ [key]: value }).toArray();
   }
 
+  // findChatsByUserId = async (id) => {
+  //   return await this.collection.find({ "participants": { "$in" : ['30aaa357-f5a2-49b9-b64b-33e1c2d13703']}  }).toArray();
+  // }
+
   get = async () => {
     try {
       return await this.collection.find().toArray();
