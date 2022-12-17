@@ -22,6 +22,10 @@ module.exports.userForFront = user => {
   return user;
 };
 
+module.exports.getUserById = async id => {
+  const user = await users.getById(id);
+  return user;
+}
 // upgrade user to new security model
 // module.exports.upgradeUser = async user => {
 //   if (user.hash) {
