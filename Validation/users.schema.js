@@ -4,7 +4,7 @@ const yup = require('yup');
 
 const regexs = {
   validPass: /^[aA-zZ0-9\s]+$/,
-  validName: /^[aA-zZ\s]+$/,
+  validName: /^[aA-zZ0-9\s]+$/,
   validPhone: /^\+?[0-9]+$/,
 };
 
