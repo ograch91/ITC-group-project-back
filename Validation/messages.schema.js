@@ -8,10 +8,9 @@ const regexs = {
   
 
 let messagesSchema = yup.object().shape({
-    id: yup.string().required(),
     sender: yup.string().required(),
     chatid: yup.string().required(),
-    datesent: yup.string().required(),
+    datesent: yup.number().required(),
     // content: yup.string().required().matches(regexs.validPass)
     content: yup.string().required()
 })
