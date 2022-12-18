@@ -28,6 +28,5 @@ module.exports.getMessagesPerChat = async chats => {
     return { chatId: id, messages: MsgPerChat}
   });
   const fromChatToMessages = await Promise.all(promiseArrChatToMsg);
-  // console.log('fromChatToMessages', fromChatToMessages);
   return fromChatToMessages;
 };

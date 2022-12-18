@@ -1,14 +1,17 @@
 const express = require('express');
-require('dotenv').config()
+require('dotenv').config();
 const cors = require('cors');
-const bodyParser = require('body-parser')
-
-const { ValidRes, internalErr } = require('./lib/responseHandler');
-
+const bodyParser = require('body-parser');
 const app = express();
+const wsServer = require('express-ws')(app);
+const { ValidRes, internalErr } = require('./lib/responseHandler');
+const { wsHandler } = require('./Lib/wsHandler');
+const connections = require('./Lib/activeConnections').getList();
+// LEAVE THIS HERE !!!!
+// global.activesessions = new Set();
 
 app.use(express.json());
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.use(
   cors({
@@ -36,18 +39,17 @@ app.use((req, res, next) => {
   }
 });
 
+app.ws('/', wsHandler);
 app.use('/users', require('./routes/users.route'));
 app.use('/messages', require('./routes/messages.route'));
 app.use('/chats', require('./routes/chats.route'));
-
-
 
 app.use((err, req, res, next) => {
   console.log('err ->>> ', err);
   res.respond(err);
 });
 
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log('Express is listening on port ' + port);
 });

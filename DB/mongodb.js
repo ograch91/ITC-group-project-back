@@ -6,7 +6,7 @@ const pass = process.env.NODE_JS_MONGODB_pass;
 const cluster = process.env.NODE_JS_MONGODB_clust;
 const uri=`mongodb+srv://${user}:${pass}@${cluster}/?retryWrites=true&w=majority`
 ;
-console.log(uri);
+
 
 let client = new MongoClient(uri);
 let database = client.db('messaging-app');
