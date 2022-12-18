@@ -70,7 +70,8 @@ module.exports.wsHandler = async (ws, req) => {
 
   ws.on('close', (code, reason) => {
     console.log(`WS Connection closed: ${code} ${reason}!`);
-    removeSession(wsSession, connections);
+    // removeSession(wsSession, connections.remove);
+    connections.remove(wsSession);
   });
 }
 
