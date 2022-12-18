@@ -34,12 +34,3 @@ module.exports.authanticate = async (req, res, next) => {
   req.user = user;
   next();
 };
-
-// module.exports.validAdmin = (req, res, next) => {
-//   const { user } = req;
-//   if (!user.isAdmin) {
-//     console.log('user is not admin', user.email);
-//     return next(errNotAllowed());
-//   }
-//   next();
-// };
