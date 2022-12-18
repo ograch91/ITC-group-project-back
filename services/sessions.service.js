@@ -1,6 +1,5 @@
-
 module.exports.sendToSessions = (targetSessions, data) => {
-  if (!targetSessions) {
+  if (!targetSessions || !targetSessions.length) {
     return;
   }
   const json = JSON.stringify(data);
