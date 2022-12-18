@@ -1,14 +1,8 @@
-/**
- * ENDPOINTS:
- * login
- * signup
- * search users
- * get user
- * update user
- * delete user?
- */
-
 const express = require('express');
+const connections = require('../Lib/activeConnections').getList();
+
+
+
 const {
   login,
   signUp,
@@ -21,7 +15,8 @@ const {
 //  const { login, signUp, ping, updateUser, setUserImage} = require('../controllers/users.controller');
 const route = express.Router();
 const { authanticate } = require('../lib/JWT');
-const users = require('../Lib/websock');
+// const users = require('../Lib/websock');
+
 const {
   userLoginSchema,
   userDetailSchema,
@@ -29,12 +24,20 @@ const {
 } = require('../validation/users.schema');
 //  const { userLoginSchema, userDetailSchema, userImageUpdate } = require('../validation/users.schema');
 const { validateSchema } = require('../validation/validate');
+const {
+  sessionsByUserId,
+  clearDeadSessions,
+  sendToSessions,
+  SessionHolder,
+} = require('../services/sessions.service');
 
-route.get('/wstest', (req, res) => {
-  [...users.cons]
-    // .filter(u => u.user.email == user.email)
-    .forEach(u => u.ws.send('recieved' + u.user.email));
-  console.log(users);
+route.post('/wstest', authanticate, (req, res) => {
+  const sessions = new SessionHolder(connections);
+  const userId = req.user.id;
+  sessions.clearDeadSessions();
+  const currentUserSes = sessions.sessionsByUserId(userId);
+  const dataToSend = { target: 'test', data: 'test' };
+  sendToSessions(currentUserSes, dataToSend);
   res.send('ok');
 });
 
