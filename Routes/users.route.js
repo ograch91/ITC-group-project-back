@@ -43,6 +43,7 @@ route.post('/wstest', authanticate, (req, res) => {
 
 route.post('/login', validateSchema(userLoginSchema), login);
 route.post('/signup', validateSchema(userDetailSchema), signUp);
+
 route.put(
   '/update',
   authanticate,
@@ -59,5 +60,6 @@ route.put(
 // Authentication bybassed for /getAllUsers for dev porpuses untill fix to work with authenticate
 route.get('/getall', /*authanticate, */ getAllUsers);
 route.get('/:id', authanticate, getUserById); // MUST BE LAST ROUTE
+
 
 module.exports = route;
