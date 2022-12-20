@@ -1,8 +1,6 @@
 const express = require('express');
 const connections = require('../Lib/activeConnections').getList();
 
-
-
 const {
   login,
   signUp,
@@ -44,9 +42,7 @@ route.post('/wstest', authanticate, (req, res) => {
 route.post('/login', validateSchema(userLoginSchema), login);
 route.post('/signup', validateSchema(userDetailSchema), signUp);
 
-route.put(
-  '/update',
-  authanticate,
+route.put('/update',authanticate,
   validateSchema(userDetailSchema),
   updateUser
 );
@@ -58,8 +54,7 @@ route.put(
   setUserImage
 );
 // Authentication bybassed for /getAllUsers for dev porpuses untill fix to work with authenticate
-route.get('/getall', /*authanticate, */ getAllUsers);
+route.get('/getall', authanticate, getAllUsers);
 route.get('/:id', authanticate, getUserById); // MUST BE LAST ROUTE
-
 
 module.exports = route;
