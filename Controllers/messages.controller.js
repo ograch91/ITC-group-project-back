@@ -1,6 +1,7 @@
 const DbCollection = require('../DB/mongodb');
 const { distributeNewMessage } = require('../services/messages.service');
 const messages = new DbCollection('messages');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports.allMessages = async (req, res, next) => {
   const allMessages = await messages.get();
@@ -20,9 +21,12 @@ module.exports.getMessagesByChatId = async (req, res, next) => {
 };
 
 module.exports.addNewMessage = async (req, res, next) => {
+  console.log(req.body);
   const { sender, chatid, datesent, content } = req.body;
-  const newMessage = { sender, chatid, datesent, content }
+  const id = uuidv4();
+  const newMessage = { sender, chatid, datesent, content, id }
   messages.add(newMessage);
+  console.log(newMessage);
   distributeNewMessage(chatid, newMessage);
   res.ok('New messages created');
 };
