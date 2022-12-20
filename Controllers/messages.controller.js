@@ -1,7 +1,9 @@
 const DbCollection = require('../DB/mongodb');
-const { distributeNewMessage } = require('../services/messages.service');
 const messages = new DbCollection('messages');
 const { v4: uuidv4 } = require('uuid');
+const { distributeNewEvent } = require('../services/sessions.service');
+const { getChatsById } = require('../services/chats.service');
+const { ErrNotFound } = require('../lib/responseHandler');
 
 module.exports.allMessages = async (req, res, next) => {
   const allMessages = await messages.get();
@@ -22,10 +24,14 @@ module.exports.getMessagesByChatId = async (req, res, next) => {
 
 module.exports.addNewMessage = async (req, res, next) => {
   const { sender, chatid, datesent, content } = req.body;
-  const id = uuidv4();
-  const newMessage = { sender, chatid, datesent, content, id }
-  messages.add(newMessage);
-  console.log(newMessage);
-  distributeNewMessage(chatid, newMessage);
+
+  const currentChat = await getChatsById(chatid);
+  if (!currentChat) {
+    return next(ErrNotFound('Chat not found'));
+  }
+  const participants = currentChat.participants;
+  const newMessage = { sender, chatid, datesent, content };
+  const newMsgDb = await messages.add(newMessage);
+  distributeNewEvent(participants, newMsgDb, 'newMessage');
   res.ok('New messages created');
 };

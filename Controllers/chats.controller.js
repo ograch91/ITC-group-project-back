@@ -9,6 +9,7 @@ const { userForFront, getUserById } = require('../services/users.service');
 const chats = new DbCollection('chats');
 const { v4: uuidv4 } = require('uuid');
 const { ErrRes, ErrNotFound } = require('../lib/responseHandler');
+const { distributeNewEvent } = require('../services/sessions.service');
 
 module.exports.allChats = async (req, res, next) => {
   const allChats = await chats.get();
@@ -25,10 +26,12 @@ module.exports.getChatsById = async (req, res, next) => {
 
 module.exports.addNewChat = async (req, res, next) => {
   const { created, participants } = req.body;
-  const id = uuidv4();
   const chatParts = req.validatedParticipants;
-  chats.add({ id, created, participants: chatParts });
-  res.ok('New chats created');
+  const newChat = { created, participants: chatParts };
+  console.log('newChat', newChat);
+  const newChatDb = await chats.add(newChat);
+  distributeNewEvent(chatParts, newChatDb, 'newChat');
+  res.ok({message:'New chats created', createdId: newChatDb.id});
 };
 
 module.exports.validateParticipants = async (req, res, next) => {

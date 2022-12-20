@@ -45,7 +45,7 @@ class DbCollection {
       id: uuidv4(),
     };
     const added = await this.collection.insertOne(newItem);
-    return added;
+    return newItem;
   };
 
   deleteById = async id => {
