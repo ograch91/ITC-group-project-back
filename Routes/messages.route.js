@@ -7,8 +7,8 @@ const { validateSchema } = require('../validation/validate');
 
 
 route.get('/getall', allMessages);
-route.get('/:id', getMessagesById);
 route.get('/getChat/:id', getMessagesByChatId);
 route.post('/',authanticate, validateSchema(messagesSchema), addNewMessage);
+route.get('/:id', getMessagesById);
 
 module.exports = route;
