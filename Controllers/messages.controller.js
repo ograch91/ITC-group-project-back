@@ -21,7 +21,6 @@ module.exports.getMessagesByChatId = async (req, res, next) => {
 };
 
 module.exports.addNewMessage = async (req, res, next) => {
-  console.log(req.body);
   const { sender, chatid, datesent, content } = req.body;
   const id = uuidv4();
   const newMessage = { sender, chatid, datesent, content, id }
