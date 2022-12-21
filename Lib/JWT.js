@@ -17,7 +17,7 @@ module.exports.verifyToken = token => {
     return { isValid: false, error };
   }
 };
-
+  
 module.exports.authanticate = async (req, res, next) => {
   const token = req.headers.authorization;
   const decodeResult = this.verifyToken(token);
