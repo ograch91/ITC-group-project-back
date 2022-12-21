@@ -5,9 +5,11 @@ const connections = require('./activeConnections').getList();
 
 module.exports.wsHandler = async (ws, req) => {
   const cookie = parseCookies(req.headers?.cookie);
-  const token = req.headers?.token || cookie?.token;
+  const token =
+    req.headers?.token ||
+    cookie?.token ||
+    req.headers['sec-websocket-protocol'];
   const decodeResult = verifyToken(token);
-  console.log(cookie, token, decodeResult,req.headers);
   if (!decodeResult.isValid) {
     ws.close();
     console.log('WS rejected');
