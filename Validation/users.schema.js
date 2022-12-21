@@ -1,5 +1,3 @@
-// each endpoint validation-schema is defined here
-
 const yup = require('yup');
 
 const regexs = {
@@ -21,14 +19,11 @@ let userDetailSchema = yup.object().shape({
 });
 
 let userImageUpdate = yup.object().shape({
-  // id: yup.string().required(),
   photo: yup.string().url().required(),
 });
-
 
 module.exports = {
   userLoginSchema,
   userDetailSchema,
   userImageUpdate,
-  
 };

@@ -6,7 +6,3 @@ module.exports.getByChatId = async chatId => {
   const sortedMessages = chatMessages.sort((a, b) => a.datesent - b.datesent);
   return sortedMessages;
 };
-
-
-
-

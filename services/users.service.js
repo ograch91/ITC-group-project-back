@@ -1,12 +1,7 @@
-// const DbCollection = require('../db/mongodb');
 const DbCollection = require('../DB/mongodb');
 const { hashPassword } = require('../lib/hashpassword');
 const users = new DbCollection('users');
 
-// module.exports.getUserByEmail = async email => {
-//   const arr = await users.getByFilterEQ('email', email);
-//   return arr[0];
-// };
 module.exports.getUserByEmail = async email => {
   const list = await users.get();
   const user = list.find(i => i.email === email);
@@ -25,7 +20,8 @@ module.exports.userForFront = user => {
 module.exports.getUserById = async id => {
   const user = await users.getById(id);
   return user;
-}
+};
+
 // upgrade user to new security model
 // module.exports.upgradeUser = async user => {
 //   if (user.hash) {

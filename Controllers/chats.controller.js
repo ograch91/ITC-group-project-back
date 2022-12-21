@@ -1,4 +1,3 @@
-// const DbCollection = require('../DBmock/dblocal');
 const DbCollection = require('../DB/mongodb');
 const {
   starterPack,
@@ -31,7 +30,7 @@ module.exports.addNewChat = async (req, res, next) => {
   console.log('newChat', newChat);
   const newChatDb = await chats.add(newChat);
   distributeNewEvent(chatParts, newChatDb, 'newChat');
-  res.ok({message:'New chats created', createdId: newChatDb.id});
+  res.ok({ message: 'New chats created', createdId: newChatDb.id });
 };
 
 module.exports.validateParticipants = async (req, res, next) => {

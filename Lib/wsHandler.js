@@ -1,10 +1,9 @@
-const { getUserByEmail } = require("../services/users.service");
-const { verifyToken } = require("./JWT");
+const { getUserByEmail } = require('../services/users.service');
+const { verifyToken } = require('./JWT');
 
 const connections = require('./activeConnections').getList();
 
 module.exports.wsHandler = async (ws, req) => {
-
   const cookie = parseCookies(req.headers?.cookie);
   const token = req.headers?.token || cookie?.token;
   const decodeResult = verifyToken(token);
@@ -28,7 +27,7 @@ module.exports.wsHandler = async (ws, req) => {
     ws,
     user,
   };
-  
+
   connections.add(wsSession);
   ws.on('message', rawmessage => {
     console.log('WS Message: ', rawmessage);
@@ -37,35 +36,6 @@ module.exports.wsHandler = async (ws, req) => {
     [...connections]
       .filter(u => u.user.email == user.email)
       .forEach(u => u.ws.send('recieved' + u.user.email));
-    
-    // try {
-
-    //     // Parsing the message
-    //     const data = JSON.parse(message);
-
-    //     // Checking if the message is a valid one
-
-    //     if (
-    //         typeof data.sender !== 'string' ||
-    //         typeof data.body !== 'string'
-    //     ) {
-    //         console.error('Invalid message');
-    //         return;
-    //     }
-
-    //     // Sending the message
-
-    //     const messageToSend = {
-    //         sender: data.sender,
-    //         body: data.body,
-    //         sentAt: Date.now()
-    //     }
-
-    //     sendMessage(messageToSend);
-
-    // } catch (e) {
-    //     console.error('Error passing message!', e)
-    // }
   });
 
   ws.on('close', (code, reason) => {
@@ -73,7 +43,7 @@ module.exports.wsHandler = async (ws, req) => {
     // removeSession(wsSession, connections.remove);
     connections.delete(wsSession);
   });
-}
+};
 
 const parseCookies = cookie => {
   try {

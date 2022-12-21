@@ -10,17 +10,14 @@ const {
   getAllUsers,
   ping,
 } = require('../controllers/users.controller');
-//  const { login, signUp, ping, updateUser, setUserImage} = require('../controllers/users.controller');
 const route = express.Router();
 const { authanticate } = require('../lib/JWT');
-// const users = require('../Lib/websock');
 
 const {
   userLoginSchema,
   userDetailSchema,
   userImageUpdate,
 } = require('../validation/users.schema');
-//  const { userLoginSchema, userDetailSchema, userImageUpdate } = require('../validation/users.schema');
 const { validateSchema } = require('../validation/validate');
 const {
   sessionsByUserId,
@@ -42,7 +39,9 @@ route.post('/wstest', authanticate, (req, res) => {
 route.post('/login', validateSchema(userLoginSchema), login);
 route.post('/signup', validateSchema(userDetailSchema), signUp);
 
-route.put('/update',authanticate,
+route.put(
+  '/update',
+  authanticate,
   validateSchema(userDetailSchema),
   updateUser
 );
@@ -53,7 +52,6 @@ route.put(
   validateSchema(userImageUpdate),
   setUserImage
 );
-// Authentication bybassed for /getAllUsers for dev porpuses untill fix to work with authenticate
 route.get('/getall', authanticate, getAllUsers);
 route.get('/:id', authanticate, getUserById); // MUST BE LAST ROUTE
 

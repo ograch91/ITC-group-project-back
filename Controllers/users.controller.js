@@ -1,5 +1,3 @@
-// actual endpoint logic/implementation is defined here
-
 const DbCollection = require('../DB/mongodb');
 const { hashPassword, verifyPassword } = require('../lib/hashpassword');
 const { generateToken } = require('../lib/JWT');

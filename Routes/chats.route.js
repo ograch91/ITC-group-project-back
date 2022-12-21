@@ -13,7 +13,6 @@ const { startChatSchema } = require('../Validation/chats.schema');
 const { validateSchema } = require('../validation/validate');
 
 route.get('/getall', allChats);
-// route.get('/getbyuser', authanticate, allChatsForUser);
 route.get('/starterpack', authanticate, getFrontStarter);
 route.post(
   '/startchat',

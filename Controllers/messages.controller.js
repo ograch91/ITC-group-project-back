@@ -1,6 +1,5 @@
 const DbCollection = require('../DB/mongodb');
 const messages = new DbCollection('messages');
-const { v4: uuidv4 } = require('uuid');
 const { distributeNewEvent } = require('../services/sessions.service');
 const { getChatsById } = require('../services/chats.service');
 const { ErrNotFound } = require('../lib/responseHandler');

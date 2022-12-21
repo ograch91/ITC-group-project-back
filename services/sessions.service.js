@@ -1,6 +1,5 @@
 const DbCollection = require('../DB/mongodb');
 const connections = require('../Lib/activeConnections').getList();
-const chats = new DbCollection('chats');
 
 module.exports.sendToSessions = (targetSessions, data) => {
   if (!targetSessions || !targetSessions.length) {

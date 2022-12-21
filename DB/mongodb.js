@@ -4,10 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 const user = process.env.NODE_JS_MONGODB_user;
 const pass = process.env.NODE_JS_MONGODB_pass;
 const cluster = process.env.NODE_JS_MONGODB_clust;
-const uri=`mongodb+srv://${user}:${pass}@${cluster}/?retryWrites=true&w=majority`
-;
-
-
+const uri = `mongodb+srv://${user}:${pass}@${cluster}/?retryWrites=true&w=majority`;
 let client = new MongoClient(uri);
 let database = client.db('messaging-app');
 
@@ -19,12 +16,8 @@ class DbCollection {
   }
 
   getByFilterEQ = async (key, value) => {
-   return await this.collection.find({ [key]: value }).toArray();
-  }
-
-  // findChatsByUserId = async (id) => {
-  //   return await this.collection.find({ "participants": { "$in" : ['30aaa357-f5a2-49b9-b64b-33e1c2d13703']}  }).toArray();
-  // }
+    return await this.collection.find({ [key]: value }).toArray();
+  };
 
   get = async () => {
     try {
