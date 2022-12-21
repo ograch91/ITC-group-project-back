@@ -7,7 +7,7 @@ module.exports.wsHandler = async (ws, req) => {
   const cookie = parseCookies(req.headers?.cookie);
   const token = req.headers?.token || cookie?.token;
   const decodeResult = verifyToken(token);
-  console.log(cookie, token, decodeResult);
+  console.log(cookie, token, decodeResult,req.headers);
   if (!decodeResult.isValid) {
     ws.close();
     console.log('WS rejected');
