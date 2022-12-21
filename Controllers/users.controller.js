@@ -1,12 +1,12 @@
 const DbCollection = require('../DB/mongodb');
-const { hashPassword, verifyPassword } = require('../lib/hashpassword');
-const { generateToken } = require('../lib/JWT');
-const { ErrNotFound, errExists, ErrRes } = require('../lib/responseHandler');
+const { hashPassword, verifyPassword } = require('../Lib/hashpassword');
+const { generateToken } = require('../Lib/JWT');
+const { ErrNotFound, errExists, ErrRes } = require('../Lib/responseHandler');
 const {
   getUserByEmail,
   userForFront,
   upgradeUser,
-} = require('../services/users.service');
+} = require('../Services/users.service');
 const users = new DbCollection('users');
 
 module.exports.login = async (req, res, next) => {

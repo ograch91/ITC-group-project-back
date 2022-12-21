@@ -9,22 +9,22 @@ const {
   getUserById,
   getAllUsers,
   ping,
-} = require('../controllers/users.controller');
+} = require('../Controllers/users.controller');
 const route = express.Router();
-const { authanticate } = require('../lib/JWT');
+const { authanticate } = require('../Lib/JWT');
 
 const {
   userLoginSchema,
   userDetailSchema,
   userImageUpdate,
-} = require('../validation/users.schema');
-const { validateSchema } = require('../validation/validate');
+} = require('../Validation/users.schema');
+const { validateSchema } = require('../Validation/validate');
 const {
   sessionsByUserId,
   clearDeadSessions,
   sendToSessions,
   SessionHolder,
-} = require('../services/sessions.service');
+} = require('../Services/sessions.service');
 
 route.post('/wstest', authanticate, (req, res) => {
   const sessions = new SessionHolder(connections);

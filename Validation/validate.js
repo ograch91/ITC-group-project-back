@@ -1,4 +1,4 @@
-const { ErrRes } = require('../lib/responseHandler');
+const { ErrRes } = require('../Lib/responseHandler');
 
 module.exports.validateSchema = schema => {
   return (req, res, next) => {

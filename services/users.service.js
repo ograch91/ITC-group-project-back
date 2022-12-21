@@ -1,5 +1,5 @@
 const DbCollection = require('../DB/mongodb');
-const { hashPassword } = require('../lib/hashpassword');
+const { hashPassword } = require('../Lib/hashpassword');
 const users = new DbCollection('users');
 
 module.exports.getUserByEmail = async email => {

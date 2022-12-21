@@ -5,7 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const wsServer = require('express-ws')(app);
-const { ValidRes, internalErr } = require('./lib/responseHandler');
+const { ValidRes, internalErr } = require('./Lib/responseHandler');
 const { wsHandler } = require('./Lib/wsHandler');
 const connections = require('./Lib/activeConnections').getList();
 
@@ -41,9 +41,9 @@ app.use((req, res, next) => {
 });
 
 app.ws('/', wsHandler);
-app.use('/users', require('./routes/users.route'));
-app.use('/messages', require('./routes/messages.route'));
-app.use('/chats', require('./routes/chats.route'));
+app.use('/users', require('./Routes/users.route'));
+app.use('/messages', require('./Routes/messages.route'));
+app.use('/chats', require('./Routes/chats.route'));
 
 app.use((err, req, res, next) => {
   console.log('err ->>> ', err);

@@ -8,7 +8,7 @@ const {
 } = require('../Controllers/messages.controller');
 const { authanticate } = require('../Lib/JWT');
 const { messagesSchema } = require('../Validation/messages.schema');
-const { validateSchema } = require('../validation/validate');
+const { validateSchema } = require('../Validation/validate');
 
 route.get('/getall', allMessages);
 route.get('/getChat/:id', getMessagesByChatId);

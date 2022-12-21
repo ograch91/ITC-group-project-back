@@ -8,9 +8,9 @@ const {
   getFrontStarter,
   validateParticipants,
 } = require('../Controllers/chats.controller');
-const { authanticate } = require('../lib/JWT');
+const { authanticate } = require('../Lib/JWT');
 const { startChatSchema } = require('../Validation/chats.schema');
-const { validateSchema } = require('../validation/validate');
+const { validateSchema } = require('../Validation/validate');
 
 route.get('/getall', allChats);
 route.get('/starterpack', authanticate, getFrontStarter);
