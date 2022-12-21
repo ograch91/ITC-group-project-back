@@ -12,10 +12,12 @@ module.exports.mapChatsToUsers = async (chats, currentUserId) => {
 
   //get user details for all other participants (arr of promises)
   const promiseArrOtherUsers = otherPartsNoDups.map(async id => {
+    console.log('id', id);
     const user = await getUserById(id);
+    if(!user) return {id, name: 'deleted user'};
     return userForFront(user);
   });
-
+ 
   //wait for all promises to resolve
   const otherUserDetails = await Promise.all(promiseArrOtherUsers);
   return otherUserDetails;
