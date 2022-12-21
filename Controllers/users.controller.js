@@ -1,5 +1,5 @@
 const DbCollection = require('../DB/mongodb');
-const { hashPassword, verifyPassword } = require('../Lib/hashpassword');
+const { hashPassword, verifyPassword } = require('../Lib/hashPassword');
 const { generateToken } = require('../Lib/JWT');
 const { ErrNotFound, errExists, ErrRes } = require('../Lib/responseHandler');
 const {
