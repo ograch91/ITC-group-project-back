@@ -7,9 +7,10 @@ const wsServer = require('express-ws')(app);
 const { ValidRes, internalErr } = require('./lib/responseHandler');
 const { wsHandler } = require('./Lib/wsHandler');
 const connections = require('./Lib/activeConnections').getList();
+
 // LEAVE THIS HERE !!!!
 // global.activesessions = new Set();
-
+console.log('RUN TIME PATH',__dirname);
 app.use(express.json());
 app.use(bodyParser.json());
 
