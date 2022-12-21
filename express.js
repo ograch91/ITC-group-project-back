@@ -1,3 +1,4 @@
+console.log('RUN TIME PATH',__dirname);
 const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
@@ -10,7 +11,6 @@ const connections = require('./Lib/activeConnections').getList();
 
 // LEAVE THIS HERE !!!!
 // global.activesessions = new Set();
-console.log('RUN TIME PATH',__dirname);
 app.use(express.json());
 app.use(bodyParser.json());
 
