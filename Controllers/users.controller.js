@@ -6,7 +6,7 @@ const {
   getUserByEmail,
   userForFront,
   upgradeUser,
-} = require('../Services/users.service');
+} = require('../services/users.service');
 const users = new DbCollection('users');
 
 module.exports.login = async (req, res, next) => {

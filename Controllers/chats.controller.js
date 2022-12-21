@@ -3,12 +3,12 @@ const {
   starterPack,
   mapChatsToUsers,
   getMessagesPerChat,
-} = require('../Services/starter.service');
-const { userForFront, getUserById } = require('../Services/users.service');
+} = require('../services/starter.service');
+const { userForFront, getUserById } = require('../services/users.service');
 const chats = new DbCollection('chats');
 const { v4: uuidv4 } = require('uuid');
 const { ErrRes, ErrNotFound } = require('../Lib/responseHandler');
-const { distributeNewEvent } = require('../Services/sessions.service');
+const { distributeNewEvent } = require('../services/sessions.service');
 
 module.exports.allChats = async (req, res, next) => {
   const allChats = await chats.get();

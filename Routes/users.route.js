@@ -24,7 +24,7 @@ const {
   clearDeadSessions,
   sendToSessions,
   SessionHolder,
-} = require('../Services/sessions.service');
+} = require('../services/sessions.service');
 
 route.post('/wstest', authanticate, (req, res) => {
   const sessions = new SessionHolder(connections);

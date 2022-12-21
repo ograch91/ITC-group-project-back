@@ -1,7 +1,7 @@
 const DbCollection = require('../DB/mongodb');
 const messages = new DbCollection('messages');
-const { distributeNewEvent } = require('../Services/sessions.service');
-const { getChatsById } = require('../Services/chats.service');
+const { distributeNewEvent } = require('../services/sessions.service');
+const { getChatsById } = require('../services/chats.service');
 const { ErrNotFound } = require('../Lib/responseHandler');
 
 module.exports.allMessages = async (req, res, next) => {

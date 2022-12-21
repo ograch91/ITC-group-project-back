@@ -1,4 +1,4 @@
-const { getUserByEmail } = require('../Services/users.service');
+const { getUserByEmail } = require('../services/users.service');
 const { verifyToken } = require('./JWT');
 
 const connections = require('./activeConnections').getList();

@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { errNoAuth } = require('./responseHandler');
-const { getUserByEmail } = require('../Services/users.service');
+const { getUserByEmail } = require('../services/users.service');
 
 const privateKey = 'secret';
 
