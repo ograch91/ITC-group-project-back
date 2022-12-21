@@ -49,13 +49,13 @@ module.exports.signUp = async (req, res, next) => {
 
 module.exports.updateUser = async (req, res, next) => {
   const { email, password, name, phone } = req.body;
-  const user = getUserByEmail(email);
+  const user = await getUserByEmail(email);
   if (!user) {
     return next(ErrNotFound('User not found'));
   }
 
   const hash = await hashPassword(password);
-  const update = users.updateItem(user.id, {
+  const update = await users.updateItem(user.id, {
     email,
     hash,
     name,
